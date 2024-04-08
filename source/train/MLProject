@@ -1,0 +1,21 @@
+conda_env: ../../check.yml
+
+entry_points:
+  main:
+    parameters:
+      train_art:
+        type: str
+      val_size:
+        type: float
+      random_seed:
+        type: int
+      stratify_by:
+        type: str
+      rf_config:
+        type: str
+      max_tfidf:
+        type: int
+      output_art:
+        type: str
+    
+    command: 'python main.py {train_art} {val_size} {random_seed} {stratify_by} {rf_config} {max_tfidf} {output_art}'

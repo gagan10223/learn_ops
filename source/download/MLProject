@@ -1,0 +1,19 @@
+name: basic_cleaning
+conda_env: ../../check.yml
+entry_points:
+  main:
+    parameters:
+      sample:
+        description: sample to download
+        type: str
+      artifact_name:
+        description: name of the artifact
+        type: str
+      artifact_type:
+        description: type of the artifact
+        type: str
+      artifact_description:
+        description: description of the artifact
+        type: str
+    command: 'python main.py {sample} {artifact_name} {artifact_type} {artifact_description}'
+      

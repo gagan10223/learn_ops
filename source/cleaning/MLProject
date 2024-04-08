@@ -1,0 +1,19 @@
+name: basic_cleaning
+conda_env: ../../check.yml
+entry_points:
+  main:
+    parameters:
+      input_artifact:
+        type: string
+      output_artifact:
+        type: str
+      output_type:
+        type: str
+      output_description:
+        type: str
+      min_price:
+        type: float
+      max_price:
+        type: float
+        
+    command: 'python main.py {input_artifact} {output_artifact} {output_type} {output_description} {min_price} {max_price}'

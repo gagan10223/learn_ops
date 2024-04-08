@@ -1,0 +1,15 @@
+conda_env: ../../check.yml
+
+entry_points:
+  main:
+    parameters:
+      data_sample:
+        type: str
+      test_size:
+        type: float
+      random_seed:
+        type: int
+      stratify_by:
+        type: str
+        
+    command: 'python main.py {data_sample} {test_size} {random_seed} {stratify_by}'
