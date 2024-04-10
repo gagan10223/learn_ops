@@ -24,6 +24,11 @@ def go(config: DictConfig):
     print(os.environ['WANDB_PROJECT'])
     
     with tempfile.TemporaryDirectory() as tmp:
+        print('----------hhhhhhhhhhhhhhhhhhh---------')
+
+        print(os.path.abspath(tmp))
+        print('-------hhhhhhhhhhhhh------------')
+
         if 'download' in steps:
             _ = mlflow.run(
                 f"{hydra.utils.get_original_cwd()}/source/download",
