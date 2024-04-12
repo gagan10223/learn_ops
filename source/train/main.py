@@ -61,7 +61,26 @@ def go(args):
     mae = mean_absolute_error(pipe.predict(y_train),y_test)
     run.summary['r2'] = r2
     run.summary['mae'] = mae
+    
+    img = feature_import(pipe,columns)
+    
+    run.log({
+        'feature_importance':wandb.Image(img)
+    })
     run.finish()
+    
+def feature_import(pipe,feat):
+    arr_non_nlp = pipe['rand'].feature_importances_[:len(feat)-1]
+    arr_nlp = pipe['rand'].feature_importances_[len(feat)-1:]
+    alll = pipe['rand'].feature_importances_
+    plt.figure(figsize=(10,6))
+    plt.barh(range(len(alll)),alll,align='center')
+    plt.yticks(range(len(feat)),feat)
+    plt.title('feature importances')
+    plt.show()
+    return plt
+    
+    
     
 def inference(config,max_feat,x_train):
     ordinal_cat = ['room_type']
@@ -81,8 +100,8 @@ def inference(config,max_feat,x_train):
             ('first',ordinal_encoder,ordinal_cat),
             ('second',non_pre,non_cat),
             ('third',zero_imputer,nums),
-            ('fourth',tfidf,['name']),
-            ('fifth',date_imputer,['last_review'])
+            ('fifth',date_imputer,['last_review']),
+            ('fourth',tfidf,['name'])
         ],
         remainder='drop'
     )

@@ -13,7 +13,7 @@ flavors:
     serialization_format: cloudpickle
     sklearn_version: 1.4.0
 mlflow_version: 2.1.1
-model_uuid: 32bba2e0db45484b812355836cab87fc
+model_uuid: 70a93fd4ddc24e6d88b9157b99c287e5
 saved_input_example_info:
   artifact_path: input_example.json
   pandas_orient: split
@@ -29,4 +29,4 @@ signature:
     "type": "double"}, {"name": "calculated_host_listings_count", "type": "long"},
     {"name": "availability_365", "type": "long"}]'
   outputs: '[{"name": "price", "type": "long"}]'
-utc_time_created: '2024-04-09 07:17:35.039901'
+utc_time_created: '2024-04-10 04:50:34.559999'
