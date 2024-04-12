@@ -1,6 +1,6 @@
 main:
   components_repository: 'https://github.com/udacity/Project-Build-an-ML-Pipeline-Starter.git#components'
-  project_name: learn_ops
+  project_name: final_ops
   experiment_name: dev
   steps: all
 etl:

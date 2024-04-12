@@ -52,15 +52,16 @@ def go(args):
         signature=signature,
         input_example=x_train.iloc[:5]
     )
-    #artifact = wandb.Artifact(args.output_art,type='model_export',description='trained',metadata=configs)
-    #artifact.add_dir('random_forest_dir')
-    #run.log_artifact(artifact)
+    artifact = wandb.Artifact(args.output_art,type='model_export',description='trained',metadata=configs)
+    artifact.add_dir('random_forest_dir')
+    run.log_artifact(artifact)
     print('----------------------------r======================')
     print(pipe['rand'].feature_importances_)
     r2 = pipe.score(y_train,y_test)
     mae = mean_absolute_error(pipe.predict(y_train),y_test)
     run.summary['r2'] = r2
     run.summary['mae'] = mae
+    run.summary['n_estimators'] = configs['n_estimators']
     
     img = feature_import(pipe,columns)
     
@@ -77,7 +78,6 @@ def feature_import(pipe,feat):
     plt.barh(range(len(alll)),alll,align='center')
     plt.yticks(range(len(feat)),feat)
     plt.title('feature importances')
-    plt.show()
     return plt
     
     
