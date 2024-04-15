@@ -1,0 +1,11 @@
+conda_env: ../../check.yml
+
+entry_points:
+  main:
+    parameters:
+      model:
+        type: str
+      dataset:
+        type: str
+        
+    command: 'python main.py {model} {dataset}'
