@@ -1,5 +1,3 @@
-print('gagan')
-
 
 from omegaconf import DictConfig
 import hydra
@@ -9,7 +7,7 @@ import wandb
 import json
 import tempfile
 
-_steps = ['download','cleaning','data_check','data_split','train_random']
+_steps = ['download','cleaning','data_check','data_split','train_random','test_model']
 
 @hydra.main(config_name='config')
 def go(config: DictConfig):
@@ -78,6 +76,7 @@ def go(config: DictConfig):
                 }
             
             )
+        
         if 'train_random' in steps:
             rf_config = os.path.abspath("rf_config.json")
             with open(rf_config, "w+") as fp:
@@ -100,9 +99,20 @@ def go(config: DictConfig):
                     'max_tfidf':config['modeling']['max_tfidf_features'],
                     'output_art':'pkl'
                 }
-            
-                
+                            
             )
+        if 'test_model' in steps:
+            _= mlflow.run(
+                f"{hydra.utils.get_original_cwd()}/source/test",
+                'main',
+                parameters = {
+                    'model': 'pkl:prod',
+                    'dataset':'test:latest'
+                }
+            
+            )
+            
+          
 
 
     

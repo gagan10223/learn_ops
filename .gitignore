@@ -3,3 +3,5 @@ mlruns/
 wandb/
 outputs/
 mlruns/
+artifacts/
+multirun/
